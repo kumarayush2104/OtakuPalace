@@ -1,0 +1,70 @@
+/* Root Start */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #251B37;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content-holder {
+    border: 1px solid white;
+    border-radius: 15px;
+}
+/* Root End */
+
+/* Anime Card Start */
+.anime-card .card {
+    color: #FFECEF;
+    background-color: #372948;
+}
+
+.anime-card img {
+    padding: 5px;
+    height: 260px;
+}
+
+.anime-card .card .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+}
+/* Anime Card End */
+
+/* Episode Number Card Start */
+.episode-number-card {
+    width: fit-content;
+    padding: 5px 15px;
+    font-weight: 600;
+    background-color: #FFECEF;
+    color: #251B37;
+    border-radius: 15px;
+}
+
+.episode-number-card.active {
+    background-color: #372948 !important;
+    border: 1px solid white !important;
+    color: white !important;
+}
+/* Episode Number Card End */
+
+.genre-card {
+    width: fit-content;
+    padding: 5px 15px;
+    font-size: x-small;
+    font-weight: 600;
+    background-color: #FFECEF;
+    color: #251B37;
+    border-radius: 25px;
+}
+
+.anime-info-card {
+    background-color: #372948;
+    color: #FFECEF;
+}
+
+.episode-view {
+    color: #FFECEF;
+}
+
