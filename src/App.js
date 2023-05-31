@@ -1,25 +1,35 @@
 // Libraries
-import React from 'react'
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Components
-import Home from './components/home/Home';
-import AnimeInfoCard from './components/AnimeInfoCard';
-import AnimeView from './components/anime-view/AnimeView';
+import AnimeInfoCard from './components/universal-cards/AnimeInfoCard'
+import EpisodeViewer from './components/universal-cards/EpisodeViewer';
+import CategoryCarouselCard from './components/universal-cards/CategoryCarouselCard';
 
 function App() {
+  const urlHandler = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, [urlHandler])
 
   return (
     <>
-      <div className="container my-5">
-        <div className="container-flex content-holder">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/Info/:path" element={<AnimeInfoCard />} />
-            <Route exact path="/View/:path" element={<AnimeView />} />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route exact path="/" element={<>
+          <CategoryCarouselCard title={"Top Airing"} link={"trending"} />
+          <CategoryCarouselCard title={"Recently Added"} link={"recent-episodes"} />
+        </>} />
+        <Route exact path="/Info/:path" element={<>
+          <AnimeInfoCard playButton={true} />
+        </>} />
+        <Route exact path="/View/:path" element={<EpisodeViewer />} />
+      </Routes>
     </>
   );
 }

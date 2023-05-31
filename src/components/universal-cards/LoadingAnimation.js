@@ -1,6 +1,5 @@
 import React from 'react'
-
-import LoadingAnimationImage from '../assets/loading.gif'
+import LoadingAnimationImage from '../../assets/loading.gif'
 
 export default function LoadingAnimation() {
     return (
