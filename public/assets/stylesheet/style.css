@@ -205,12 +205,12 @@ img {
     -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid #dadada;
-    padding: 5px 20px;
-    height: 50px;
+    /* padding: 5px 10px; */
+    /* height: 50px; */
     background: none;
     color: #959595;
     font-size: 12px;
-    border-radius: 0;
+    border-radius: 15px;
 }
 
 .form-control:focus {
@@ -744,7 +744,7 @@ ul.list-check li:before {
 .episode-block {
     -webkit-box-shadow: 0px 0 20px 0 rgba(255, 255, 255, 0.5);
     -moz-box-shadow: 0px 0 20px 0 rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0 20px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0 10px 0 rgba(255, 255, 255, 0.5);
 }
 
 .episode-img {
@@ -1193,11 +1193,6 @@ video {
     padding: 0;
 }
 
-.main-nav>.container-fluid,
-.search-area {
-    position: relative;
-}
-
 .search-area {
     min-height: 70px;
     padding-right: 0;
@@ -1319,7 +1314,7 @@ video {
   ==================================================*/
 /* Main navigation */
 .main-nav {
-    position: relative;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.5);
     padding: 0 15px;
     background-color: #272829;
     min-height: 70px;
@@ -2425,4 +2420,28 @@ To Top Button
 .modal.show {
     display: block !important;
     background: rgba(0, 0, 0, .7);
+}
+
+.back-to-top button {
+    background-color: #ff0000;
+    border: none;
+}
+
+.back-to-top-btn {
+    display: none;
+}
+
+.back-to-top-btn.active {
+    display: block !important;
+}
+
+.nav-link:hover {
+    color: #ff0000 !important;
+}
+
+.input-group button {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-radius: 15px;
 }

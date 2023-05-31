@@ -50,7 +50,7 @@ export default function AnimeInfoCard(props) {
                                 <div className="col-md-9">
                                     <div className="play-details-content">
                                         <div className="title-block d-flex align-items-center justify-content-between">
-                                            <h2 className="play-title">{animeInfo.title.english}</h2>
+                                            <h2 className="play-title">{animeInfo.title.english ? animeInfo.title.english : animeInfo.title.romaji}</h2>
                                         </div>
 
                                         <div className="details-info mb-4">
@@ -61,7 +61,7 @@ export default function AnimeInfoCard(props) {
                                         </div>
 
                                         <div className="details-desc">
-                                            <p>{ReactHtmlParser(animeInfo.description)}</p>
+                                            <p>{animeInfo.description ? ReactHtmlParser(animeInfo.description) : null}</p>
                                         </div>
 
                                         <div className="movie-persons mb-4">
@@ -92,7 +92,7 @@ export default function AnimeInfoCard(props) {
                                                 <i className="icofont-ui-play mr-2" aria-hidden="true"></i>Play
                                             </Link>
                                         </div>
-                                        <div className="col-6 col-xl mb-xl-0 mb-3">
+                                        {animeInfo.trailer ? <div className="col-6 col-xl mb-xl-0 mb-3">
                                             <a
                                                 id="trailer"
                                                 className="btn d-block hvr-sweep-to-right"
@@ -124,13 +124,16 @@ export default function AnimeInfoCard(props) {
                                                     </div>
                                                 </div>
                                             )}
-                                        </div>
+                                        </div> : null}
                                     </div>
                                 </div>
                             ) : null}
                         </div>
                     </section>
-                    <CategoryCarouselCard data={animeInfo.recommendations} title={"Recommendations"} />
+                    {animeInfo.recommendations && animeInfo.recommendations.length > 0 ?
+                        <CategoryCarouselCard data={animeInfo.recommendations} title={"Recommendations"} viewMoreButton={false} /> :
+                        <CategoryCarouselCard title={"Top Airing"} link={"trending"} viewMoreButton={true} />
+                    }
                 </>
             ) : (
                 <LoadingAnimation />

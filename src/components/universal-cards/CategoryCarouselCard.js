@@ -56,7 +56,7 @@ export default function CategoryCarouselCard(props) {
         } else {
             fetchData();
         }
-    }, [props.link]);
+    }, [animeId]);
 
     return (
         <section className="carousel-section">
@@ -64,9 +64,9 @@ export default function CategoryCarouselCard(props) {
                 <div className="row">
                     <div className="col-lg-12 d-flex justify-content-between my-2">
                         <h2 className="block-title">{props.title}</h2>
-                        <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
+                        {props.viewMoreButton ? <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
                             View More
-                        </Link>
+                        </Link> : null}
                     </div>
                     {loading ? (
                         <LoadingAnimation />
@@ -80,6 +80,7 @@ export default function CategoryCarouselCard(props) {
                                     genres={element.genres}
                                     episode={element.episodeNumber}
                                     key={element.id}
+                                    explorable={element.episodes > 0 || element.episodeNumber > 0}
                                 />
                             ))}
                         </OwlCarousel>
