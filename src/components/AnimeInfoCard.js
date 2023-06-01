@@ -1,18 +1,26 @@
+// Libraries
 import React, { useEffect, useState } from 'react';
-import LoadingAnimation from './LoadingAnimation';
 import { Link, useLocation } from 'react-router-dom';
 import ReactHtmlParser from 'html-react-parser';
+
+// Components
 import CategoryCarouselCard from './CategoryCarouselCard';
+import LoadingAnimation from './LoadingAnimation';
 
 export default function AnimeInfoCard(props) {
-    const animeId = useLocation();
 
+    const [isError, setError] = useState(false);
+    const animeId = useLocation();
     const [animeInfo, setAnimeInfo] = useState(null);
     const [trailerView, setTrailerView] = useState(false);
 
     const handleTrailerView = () => {
         setTrailerView((prevTrailerView) => !prevTrailerView);
     };
+
+    const handleError = () => {
+        setError(true);
+    }
 
     useEffect(() => {
         setAnimeInfo(null);
@@ -24,6 +32,7 @@ export default function AnimeInfoCard(props) {
                     setAnimeInfo(data);
                 }
             } catch (error) {
+                handleError();
                 console.error(error);
             }
         };
@@ -37,6 +46,8 @@ export default function AnimeInfoCard(props) {
                     <section className="play-details">
                         <div className="container">
                             <div className="row align-items-center">
+
+                                {/* Image Section Start */}
                                 <div className="col-md-3">
                                     <div className="row">
                                         <div className="col-md-12">
@@ -46,13 +57,18 @@ export default function AnimeInfoCard(props) {
                                         </div>
                                     </div>
                                 </div>
+                                {/* Image Section End */}
 
                                 <div className="col-md-9">
                                     <div className="play-details-content">
+
+                                        {/* Title Section Start */}
                                         <div className="title-block d-flex align-items-center justify-content-between">
                                             <h2 className="play-title">{animeInfo.title.english ? animeInfo.title.english : animeInfo.title.romaji}</h2>
                                         </div>
+                                        {/* Title Section End */}
 
+                                        {/* Details Section Start */}
                                         <div className="details-info mb-4">
                                             <span><i className="icofont-monitor mr-2"></i> {animeInfo.type}</span>
                                             <span><i className="icofont-ui-video-play mr-2"></i> {`Episodes: ${animeInfo.totalEpisodes}`}</span>
@@ -81,9 +97,13 @@ export default function AnimeInfoCard(props) {
                                                 <p>{animeInfo.status}</p>
                                             </div>
                                         </div>
+                                        {/* Details Section End */}
+
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Play and Trailer Section Start */}
                             {props.playButton ? (
                                 <div className="details-buttons">
                                     <div className="row d-flex align-items-center">
@@ -128,12 +148,18 @@ export default function AnimeInfoCard(props) {
                                     </div>
                                 </div>
                             ) : null}
+                            {/* Play and trailer Section End */}
+
                         </div>
                     </section>
+
+                    {/* Recommendation or Top Airing Section Start */}
                     {animeInfo.recommendations && animeInfo.recommendations.length > 0 ?
                         <CategoryCarouselCard data={animeInfo.recommendations} title={"Recommendations"} viewMoreButton={false} /> :
                         <CategoryCarouselCard title={"Top Airing"} link={"trending"} viewMoreButton={true} />
                     }
+                    {/* Recommendation or Top Airing Section End */}
+
                 </>
             ) : (
                 <LoadingAnimation />

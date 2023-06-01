@@ -38,19 +38,19 @@
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Regular.woff");
+    src: url("fonts/Poppins-Regular.woff");
     font-weight: 400;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-SemiBold.woff");
+    src: url("fonts/Poppins-SemiBold.woff");
     font-weight: 600;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Bold.woff");
+    src: url("fonts/Poppins-Bold.woff");
     font-weight: 700;
 }
 
@@ -934,7 +934,8 @@ ul.list-check li:before {
     border-radius: 0;
 }
 
-.modal-body, .modal-title {
+.modal-body,
+.modal-title {
     color: white;
 }
 
@@ -1327,15 +1328,8 @@ video {
 
 .navbar-toggler {
     color: #fff;
-    padding: 8px 15px;
     background: #ff0000;
-    position: absolute;
-    top: -55px;
     z-index: 9;
-}
-
-.navbar-toggler-icon {
-    width: 25px;
 }
 
 .navbar-collapse {
@@ -2002,7 +1996,7 @@ To Top Button
 ==================================================*/
 .back-to-top {
     position: fixed;
-    right: 55px;
+    right: 15px;
     bottom: 15px;
     z-index: 10;
     background: #ff0000;
@@ -2387,9 +2381,21 @@ To Top Button
     height: 300px;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 550px) {
     .video-thumb img {
-        height: 200px;
+        height: 250px !important;
+    }
+
+    .view-more-button {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar-collapse.collapse,
+    .navbar-collapse.collapsing {
+        margin: 30px 0px;
     }
 }
 
@@ -2444,4 +2450,19 @@ To Top Button
     border-bottom: 1px solid white;
     border-right: 1px solid white;
     border-radius: 15px;
+}
+
+.genre-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 25px;
+    color: white;
+}
+
+.genre-section {
+    background-color: #000;
+}
+
+.genre-button.active {
+    background-color: #ff0000;
 }

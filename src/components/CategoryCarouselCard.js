@@ -6,7 +6,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { Link, useLocation } from 'react-router-dom';
 
 // Components
-import AnimeCard from './AnimeCard';
+import AnimeCarouselCard from './AnimeCarouselCard';
 import LoadingAnimation from './LoadingAnimation';
 
 export default function CategoryCarouselCard(props) {
@@ -72,32 +72,32 @@ export default function CategoryCarouselCard(props) {
         <section className="carousel-section">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-12 d-flex justify-content-between my-2">
+                    <div className="col-lg-12 d-flex justify-content-between">
                         <h2 className="block-title">{props.title}</h2>
-                        {props.viewMoreButton && !isError ? (
-                            <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
-                                View More
-                            </Link>
-                        ) : null}
                     </div>
                     {loading ? (
                         <LoadingAnimation />
-                    ) : isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{color: "#FF0000"}} /> Failed to Fetch Data</h1> : (
-                        <OwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag" {...CarouselOptions}>
+                    ) : isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : (
+                        <OwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag my-4" {...CarouselOptions}>
                             {animeList.map((element) => (
-                                <AnimeCard
+                                <AnimeCarouselCard
                                     id={element.id}
                                     image={element.image}
                                     title={element.title.english ? element.title.english : element.title.userPreferred}
                                     genres={element.genres}
                                     episode={element.episodeNumber}
                                     key={element.id}
-                                    explorable={element.episodes > 0 || element.episodeNumber > 0}
+                                    explorable={element.currentEpisode > 0 || element.episodeNumber || element.status == "Ongoing" || element.status === "Completed"}
                                 />
                             ))}
                         </OwlCarousel>
                     )}
                 </div>
+                {props.viewMoreButton && !isError ? (
+                    <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
+                        View More
+                    </Link>
+                ) : null}
             </div>
         </section>
     );

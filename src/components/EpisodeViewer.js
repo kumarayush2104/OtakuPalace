@@ -117,7 +117,7 @@ export default function EpisodeViewer() {
                                         .map((element) => (
                                             <EpisodeCard
                                                 url={element.id}
-                                                episodeNumber={element.number}
+                                                episodeNumber={`Episode ${element.number}`}
                                                 isActive={currentEpisode === element.id}
                                                 changeEpisode={setCurrentEpisode}
                                             />
