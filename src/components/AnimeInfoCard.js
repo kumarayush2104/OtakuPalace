@@ -47,7 +47,7 @@ export default function AnimeInfoCard(props) {
     return (
         <section className="play-details">
             <div className="container">
-                {isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                {isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
                     animeInfo ? (
                         <>
                             <section className="play-details">

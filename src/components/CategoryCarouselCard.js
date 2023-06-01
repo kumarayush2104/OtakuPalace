@@ -40,6 +40,8 @@ export default function CategoryCarouselCard(props) {
     }
 
     useEffect(() => {
+
+        // Fetches Anime Information
         setLoading(true);
 
         const fetchData = async () => {
@@ -50,7 +52,6 @@ export default function CategoryCarouselCard(props) {
                     setAnimeList(data.results);
                 } else {
                     toggleError()
-                    throw new Error('Failed to fetch data');
                 }
             } catch (error) {
                 toggleError();
@@ -59,7 +60,7 @@ export default function CategoryCarouselCard(props) {
                 setLoading(false);
             }
         };
-
+        // Uses Data instead of Fetching if provided
         if (props.data) {
             setAnimeList(props.data);
             setLoading(false);
@@ -72,12 +73,17 @@ export default function CategoryCarouselCard(props) {
         <section className="carousel-section">
             <div className="container">
                 <div className="row">
+
+                    {/* Title Section Start */}
                     <div className="col-lg-12 d-flex justify-content-between">
                         <h2 className="block-title">{props.title}</h2>
                     </div>
+                    {/* Title Section End */}
+
+                    {/* Carousel Section Start */}
                     {loading ? (
                         <LoadingAnimation />
-                    ) : isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : (
+                    ) : isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : (
                         <OwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag my-4" {...CarouselOptions}>
                             {animeList.map((element) => (
                                 <AnimeCarouselCard
@@ -92,12 +98,16 @@ export default function CategoryCarouselCard(props) {
                             ))}
                         </OwlCarousel>
                     )}
+                    {/* Carousel Section End */}
                 </div>
+
+                {/* View More Button Start */}
                 {props.viewMoreButton && !isError ? (
                     <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
                         View More
                     </Link>
                 ) : null}
+                {/* View More Button End */}
             </div>
         </section>
     );

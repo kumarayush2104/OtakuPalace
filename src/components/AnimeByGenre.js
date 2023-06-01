@@ -18,7 +18,7 @@ export default function AnimeByGenre() {
     }
 
     useEffect(() => {
-        // Fetchs GenreWise Anime
+        // Fetches GenreWise Anime
         const fetchData = async () => {
             setAnimeList(null)
             try {
@@ -68,7 +68,7 @@ export default function AnimeByGenre() {
 
                             {/* Tab Content Start */}
                             <div className="row">
-                                {isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                                {isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
                                     animeList ?
                                         animeList.map((element) => <AnimeNonCarouselCard
                                             id={element.id}

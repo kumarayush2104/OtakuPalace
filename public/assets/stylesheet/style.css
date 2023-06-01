@@ -2466,3 +2466,17 @@ To Top Button
 .genre-button.active {
     background-color: #ff0000;
 }
+
+.banner {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.banner .container {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.badge {
+    padding: 10px;
+    font-size: 15px;
+}
