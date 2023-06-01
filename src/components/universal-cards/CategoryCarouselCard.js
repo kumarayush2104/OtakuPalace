@@ -3,15 +3,16 @@ import React, { useEffect, useState } from 'react';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { Link, useLocation } from 'react-router-dom';
 
 // Components
 import AnimeCard from './AnimeCard';
 import LoadingAnimation from './LoadingAnimation';
-import { Link, useLocation } from 'react-router-dom';
 
 export default function CategoryCarouselCard(props) {
     const [animeList, setAnimeList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isError, setError] = useState(false);
     const animeId = useLocation();
 
     const CarouselOptions = {
@@ -34,6 +35,10 @@ export default function CategoryCarouselCard(props) {
         },
     };
 
+    const toggleError = () => {
+        setError(!isError)
+    }
+
     useEffect(() => {
         setLoading(true);
 
@@ -43,20 +48,25 @@ export default function CategoryCarouselCard(props) {
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeList(data.results);
+                } else {
+                    toggleError()
+                    throw new Error('Failed to fetch data');
                 }
             } catch (error) {
+                toggleError();
                 console.error(error);
             } finally {
                 setLoading(false);
             }
         };
+
         if (props.data) {
-            setAnimeList(props.data)
-            setLoading(false)
+            setAnimeList(props.data);
+            setLoading(false);
         } else {
             fetchData();
         }
-    }, [animeId]);
+    }, [animeId, props.data, props.link]);
 
     return (
         <section className="carousel-section">
@@ -64,13 +74,15 @@ export default function CategoryCarouselCard(props) {
                 <div className="row">
                     <div className="col-lg-12 d-flex justify-content-between my-2">
                         <h2 className="block-title">{props.title}</h2>
-                        {props.viewMoreButton ? <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
-                            View More
-                        </Link> : null}
+                        {props.viewMoreButton && !isError ? (
+                            <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
+                                View More
+                            </Link>
+                        ) : null}
                     </div>
                     {loading ? (
                         <LoadingAnimation />
-                    ) : (
+                    ) : isError ? <h1 className='text-white text-center'><i class="fa-solid fa-warning" style={{color: "#FF0000"}} /> Failed to Fetch Data</h1> : (
                         <OwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag" {...CarouselOptions}>
                             {animeList.map((element) => (
                                 <AnimeCard
