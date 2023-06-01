@@ -12,6 +12,7 @@ export default function AnimeByGenre() {
     const [animeList, setAnimeList] = useState(null);
     const [animeGenre, setAnimeGenre] = useState("Action")
 
+    // Handle Errors
     const toggleError = () => {
         setError(true)
     }
@@ -25,6 +26,8 @@ export default function AnimeByGenre() {
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeList(data.results);
+                } else {
+                    toggleError();
                 }
             } catch (error) {
                 toggleError();

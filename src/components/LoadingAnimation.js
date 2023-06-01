@@ -1,4 +1,7 @@
+// Libraries
 import React from 'react'
+
+// Media
 import LoadingAnimationImage from '../assets/loading.gif'
 
 export default function LoadingAnimation() {
