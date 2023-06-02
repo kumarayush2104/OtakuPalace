@@ -52,25 +52,34 @@ export default function TopAnimeSection(props) {
     return (
         <>
             {isError ?
-            <h1 className='text-white text-center p-5'>Message From Top Banner: <br /><br /><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : 
-            animeList ?
-                <div className="container-flex banner" style={{ backgroundImage: `url(${AnimeBanner})` }}>
-                    <ReactOwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag" {...CarouselOptions}>
-                        {animeList.map((element) => props.largeScreen ? <TopAnimeCard
-                            id={element.id}
-                            image={element.image}
-                            description={element.description}
-                            genres={element.genres}
-                            title={element.title.english ? element.title.english : element.title.romaji} /> :
+                // Error Banner Start
+                <h1 className='text-white text-center p-5'>Message From Top Banner: <br /><br /><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                // Error Banner End
+                animeList ?
+                    <div className="container-flex banner" style={{ backgroundImage: `url(${AnimeBanner})` }}>
 
-                            <TopAnimeCardMobile
-                                id={element.id}
-                                image={element.image}
-                                description={element.description}
-                                genres={element.genres}
-                                title={element.title.english ? element.title.english : element.title.romaji} />)}
-                    </ReactOwlCarousel>
-                </div> : <LoadingAnimation />}
+                        {/* Carousel Section Start */}
+                        <ReactOwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag" {...CarouselOptions}>
+                            {animeList.map((element) => props.largeScreen ?
+                                // Default Anime Card
+                                <TopAnimeCard
+                                    id={element.id}
+                                    image={element.image}
+                                    description={element.description}
+                                    genres={element.genres}
+                                    title={element.title.english ? element.title.english : element.title.romaji} /> :
+
+                                // Mobile Anime Card
+                                <TopAnimeCardMobile
+                                    id={element.id}
+                                    image={element.image}
+                                    description={element.description}
+                                    genres={element.genres}
+                                    title={element.title.english ? element.title.english : element.title.romaji} />)}
+                        </ReactOwlCarousel>
+                        {/* Carousel Section End */}
+
+                    </div> : <LoadingAnimation />}
 
         </>
     )
