@@ -74,7 +74,6 @@ export default function AnimeByGenre() {
                                             id={element.id}
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}
-                                            releaseYear={element.releaseDate}
                                             genres={element.genres}
                                         />) : <LoadingAnimation />}
                             </div>

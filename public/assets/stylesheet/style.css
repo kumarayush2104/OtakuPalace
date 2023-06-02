@@ -611,11 +611,10 @@ ul.list-check li:before {
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 100%;
-
+    margin: 0;
     font-size: 16px;
     text-align: left;
     line-height: 24px;
-    margin: 12px 0 10px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -879,7 +878,7 @@ ul.list-check li:before {
 .play-title {
     margin: 30px 0;
     font-weight: 700;
-    font-size: 42px;
+    font-size: 38px;
     color: #ffffff;
     z-index: 9;
     text-transform: uppercase;
@@ -2469,10 +2468,11 @@ To Top Button
 
 .banner {
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
 }
 
 .banner .container {
+    backdrop-filter: blur(10px) saturate(50%);
     background-color: rgba(0, 0, 0, .8);
 }
 

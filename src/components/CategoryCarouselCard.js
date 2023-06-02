@@ -35,8 +35,10 @@ export default function CategoryCarouselCard(props) {
         },
     };
 
+
+    // Handle errors
     const toggleError = () => {
-        setError(!isError)
+        setError(true)
     }
 
     useEffect(() => {

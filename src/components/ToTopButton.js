@@ -1,3 +1,4 @@
+// Libraries
 import React, { useEffect, useState } from 'react'
 
 export default function ToTopButton() {
@@ -5,6 +6,7 @@ export default function ToTopButton() {
     const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
+        // Handles Window scroll Section
         const handleScroll = () => {
             if (window.scrollY > 300) {
                 setShowButton(true);
@@ -19,6 +21,7 @@ export default function ToTopButton() {
         };
     }, []);
 
+    // Scrolls the window to top
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
