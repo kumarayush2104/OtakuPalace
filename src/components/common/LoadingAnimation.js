@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Media
-import LoadingAnimationImage from '../assets/loading1.gif'
+import LoadingAnimationImage from '../../assets/loading.gif'
 
 export default function LoadingAnimation() {
     return (

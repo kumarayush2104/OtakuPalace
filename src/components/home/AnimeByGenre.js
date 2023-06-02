@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 // Components
-import AnimeNonCarouselCard from './AnimeNonCarouselCard';
-import LoadingAnimation from './LoadingAnimation';
+import LoadingAnimation from '../common/LoadingAnimation';
+import AnimeNonCarouselCard from '../common/AnimeNonCarouselCard';
 
 export default function AnimeByGenre() {
 
@@ -63,10 +63,9 @@ export default function AnimeByGenre() {
                     </ul>
                     {/* Genre tabs End */}
 
+                    {/* Tab Content Start */}
                     <div className="tab-content">
                         <div className="tab-pane animated fadeInRight show active">
-
-                            {/* Tab Content Start */}
                             <div className="row">
                                 {isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
                                     animeList ?
@@ -77,10 +76,10 @@ export default function AnimeByGenre() {
                                             genres={element.genres}
                                         />) : <LoadingAnimation />}
                             </div>
-                            {/* Tab Content End */}
-
                         </div>
                     </div>
+                    {/* Tab Content End */}
+
                 </div>
 
                 {/* View More Button Start */}
@@ -88,6 +87,7 @@ export default function AnimeByGenre() {
                     View More
                 </Link>
                 {/* View More Button End */}
+
             </div>
         </div>
     )

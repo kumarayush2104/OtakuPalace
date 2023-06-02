@@ -2480,3 +2480,11 @@ To Top Button
     padding: 10px;
     font-size: 15px;
 }
+
+.page-nav-button {
+    border: none;
+    color: white;
+    background-color: #ff0000;
+    padding: 10px 25px;
+    border-radius: 10px;
+}

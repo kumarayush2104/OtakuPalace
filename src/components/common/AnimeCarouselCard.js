@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function AnimeCard(props) {
+function AnimeCarouselCard(props) {
     return (
         <div className="video-block">
             <div className="video-thumb position-relative thumb-overlay">
@@ -38,8 +38,9 @@ function AnimeCard(props) {
                 </div> : null}
             </div>
             {/* Video Details End */}
+            
         </div >
     )
 }
 
-export default AnimeCard
+export default AnimeCarouselCard

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function AnimeNonCarouselCard(props) {
     return (
-        <div className="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div className="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2 mb-3">
             <div className="video-block">
 
                 {/* Image Section Start */}
@@ -29,13 +29,15 @@ export default function AnimeNonCarouselCard(props) {
 
                 {/* Video Details Start */}
                 <div className="video-content">
-                    <h2 className="video-title"><Link to={`/Info/${props.id}`}>{props.title}</Link></h2>
-                    <p className="video-year text-center">{props.releaseYear}</p>
-                    <div className="video-info d-flex flex-wrap">
+                    <h6 className="video-title m-1">
+                        {props.explorable ? <Link to={`/Info/${props.id}`}>{props.title}</Link> : props.title}
+                    </h6>
+                    <div className="video-info d-flex align-items-center flex-wrap">
                         {props.genres.map((element) => <span className="video-type m-1">{element}</span>)}
                     </div>
                 </div>
                 {/* Video Details End */}
+                
             </div>
         </div>
     )
