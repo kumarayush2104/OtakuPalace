@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactHtmlParser from 'html-react-parser';
 
 // Components
-import CategoryCarouselCard from './CategoryCarouselCard';
-import LoadingAnimation from './LoadingAnimation';
+import LoadingAnimation from '../common/LoadingAnimation';
+import CategoryCarouselCard from '../common/CategoryCarouselCard';
 
 export default function AnimeInfoCard(props) {
 
@@ -14,7 +14,7 @@ export default function AnimeInfoCard(props) {
     const [animeInfo, setAnimeInfo] = useState(null);
     const [trailerView, setTrailerView] = useState(false);
 
-    // Handles trailerView
+    // Handle trailerView
     const handleTrailerView = () => {
         setTrailerView((prevTrailerView) => !prevTrailerView);
     };
@@ -47,7 +47,11 @@ export default function AnimeInfoCard(props) {
     return (
         <section className="play-details">
             <div className="container">
-                {isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                {isError ?
+                    // Error Banner Start
+                    <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                    // Error Banner End
+
                     animeInfo ? (
                         <>
                             <section className="play-details">
@@ -75,19 +79,23 @@ export default function AnimeInfoCard(props) {
                                                 </div>
                                                 {/* Title Section End */}
 
-                                                {/* Details Section Start */}
+                                                {/* Other Details Section Start */}
                                                 <div className="details-info mb-4">
                                                     <span><i className="icofont-monitor mr-2"></i> {animeInfo.type}</span>
                                                     <span><i className="icofont-ui-video-play mr-2"></i> {`Episodes: ${animeInfo.totalEpisodes}`}</span>
                                                     <span><i className="icofont-clock-time mr-2" aria-hidden="true"></i> {animeInfo.releaseDate}</span>
                                                     <span className="text-capitalize"><i className="icofont-volume-bar mr-2"></i> {animeInfo.subOrDub}</span>
                                                 </div>
+                                                {/* Other Details Section End */}
 
+                                                {/* Description Section Start */}
                                                 <div className="details-desc">
                                                     <p>{animeInfo.description ? ReactHtmlParser(animeInfo.description) : null}</p>
                                                 </div>
+                                                {/* Description Section End */}
 
                                                 <div className="movie-persons mb-4">
+                                                    {/* Genre Section Start */}
                                                     <div className="person-block">
                                                         <h5 className="title">Genre</h5>
                                                         <p>
@@ -98,14 +106,16 @@ export default function AnimeInfoCard(props) {
                                                             ))}
                                                         </p>
                                                     </div>
+                                                    {/* Genre Section End */}
 
+                                                    {/* Status Section Start */}
                                                     <div className="person-block">
                                                         <h5 className="title">Status</h5>
                                                         <p>{animeInfo.status}</p>
                                                     </div>
-                                                </div>
-                                                {/* Details Section End */}
+                                                    {/* Status Section End */}
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -119,10 +129,12 @@ export default function AnimeInfoCard(props) {
                                                         <i className="icofont-ui-play mr-2" aria-hidden="true"></i>Play
                                                     </Link>
                                                 </div>
+
+                                                {/* Trailer Section Start */}
                                                 {animeInfo.trailer ? <div className="col-6 col-xl mb-xl-0 mb-3">
-                                                    <a
+                                                    <button
                                                         id="trailer"
-                                                        className="btn d-block hvr-sweep-to-right"
+                                                        className="btn w-100 hvr-sweep-to-right"
                                                         onClick={handleTrailerView}
                                                         tabIndex="0"
                                                         data-toggle="modal"
@@ -130,7 +142,7 @@ export default function AnimeInfoCard(props) {
                                                         aria-hidden="true"
                                                     >
                                                         <i className="icofont-ui-movie mr-2" aria-hidden="true"></i>Trailer
-                                                    </a>
+                                                    </button>
 
                                                     {trailerView && (
                                                         <div className="modal fade show" id="trailer-modal" tabIndex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
@@ -145,13 +157,15 @@ export default function AnimeInfoCard(props) {
                                                                         </button>
                                                                     </div>
                                                                     <div className="modal-body">
-                                                                        <iframe className="video d-block" width="100%" height="500px" controls src={"https://www.youtube.com/embed/" + animeInfo.trailer.id + "?autoplay=1"}></iframe>
+                                                                        <iframe title="Trailer" className="video d-block" width="100%" height="500px" controls src={"https://www.youtube.com/embed/" + animeInfo.trailer.id + "?autoplay=1"}></iframe>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     )}
                                                 </div> : null}
+                                                {/* Trailer Section End */}
+
                                             </div>
                                         </div>
                                     ) : null}
@@ -171,6 +185,5 @@ export default function AnimeInfoCard(props) {
                     )}
             </div>
         </section>
-
     );
 }

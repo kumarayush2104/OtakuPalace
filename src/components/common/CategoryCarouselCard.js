@@ -62,6 +62,7 @@ export default function CategoryCarouselCard(props) {
                 setLoading(false);
             }
         };
+
         // Uses Data instead of Fetching if provided
         if (props.data) {
             setAnimeList(props.data);
@@ -82,10 +83,16 @@ export default function CategoryCarouselCard(props) {
                     </div>
                     {/* Title Section End */}
 
-                    {/* Carousel Section Start */}
+
                     {loading ? (
                         <LoadingAnimation />
-                    ) : isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : (
+                    ) : isError ?
+
+                        // Error Banner Start
+                        <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
+                        // Error Banner End
+
+                        // Carousel Section Start
                         <OwlCarousel className="owl-carousel owl-theme owl-loaded owl-drag my-4" {...CarouselOptions}>
                             {animeList.map((element) => (
                                 <AnimeCarouselCard
@@ -95,12 +102,13 @@ export default function CategoryCarouselCard(props) {
                                     genres={element.genres}
                                     episode={element.episodeNumber}
                                     key={element.id}
-                                    explorable={element.currentEpisode > 0 || element.episodeNumber || element.status == "Ongoing" || element.status === "Completed"}
+                                    explorable={element.currentEpisode > 0 || element.episodeNumber || element.status === "Ongoing" || element.status === "Completed"}
                                 />
                             ))}
                         </OwlCarousel>
-                    )}
-                    {/* Carousel Section End */}
+                        // Carousel Section End
+
+                    }
                 </div>
 
                 {/* View More Button Start */}
@@ -110,6 +118,7 @@ export default function CategoryCarouselCard(props) {
                     </Link>
                 ) : null}
                 {/* View More Button End */}
+                
             </div>
         </section>
     );
