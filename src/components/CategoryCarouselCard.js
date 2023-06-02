@@ -16,7 +16,7 @@ export default function CategoryCarouselCard(props) {
     const animeId = useLocation();
 
     const CarouselOptions = {
-        loop: true,
+        loop: animeList.length > 4,
         margin: 30,
         autoplay: true,
         items: 7,

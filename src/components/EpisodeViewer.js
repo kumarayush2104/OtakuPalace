@@ -3,21 +3,29 @@ import React, { useEffect, useState } from 'react';
 import { Player } from 'react-tuby';
 import "react-tuby/css/main.css";
 import ReactHlsPlayer from '@ducanh2912/react-hls-player';
+import { useLocation } from 'react-router-dom';
 
 // Components
 import LoadingAnimation from './LoadingAnimation';
 import AnimeInfoCard from './AnimeInfoCard';
 import EpisodeCard from './EpisodeCard';
-import { useLocation } from 'react-router-dom';
 
 export default function EpisodeViewer() {
+
+    const [isError, setError] = useState(false);
     const [currentEpisode, setCurrentEpisode] = useState(null);
     const [currentEpisodeSource, setCurrentEpisodeSource] = useState(null);
     const [totalEpisodes, setTotalEpisodes] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const urlLocation = useLocation();
 
+    // Handle Errors
+    const handleError = () => {
+        setError(true)
+    }
+
     useEffect(() => {
+        // Fetches Anime Information
         const fetchAnimeInfo = async () => {
             try {
                 setIsLoading(true);
@@ -29,9 +37,11 @@ export default function EpisodeViewer() {
                     const data = await response.json();
                     setTotalEpisodes(data.episodes);
                 } else {
+                    handleError();
                     throw new Error("Failed to fetch anime info");
                 }
             } catch (error) {
+                handleError();
                 console.error(error);
             } finally {
                 setIsLoading(false);
@@ -42,21 +52,24 @@ export default function EpisodeViewer() {
     }, [urlLocation]);
 
     useEffect(() => {
+        // Set Episode Source to 1st episode after fetching
         const fetchEpisodeSource = async () => {
             try {
                 setIsLoading(true);
                 setCurrentEpisode(totalEpisodes[0].id)
             } catch (error) {
+                handleError()
                 console.error(error);
             } finally {
                 setIsLoading(false);
             }
         };
-
-        fetchEpisodeSource();
+        if (totalEpisodes) fetchEpisodeSource();
     }, [totalEpisodes]);
 
     useEffect(() => {
+
+        // Fetches Episode Links
         const fetchEpisodeSource = async () => {
             try {
                 setIsLoading(true);
@@ -67,24 +80,27 @@ export default function EpisodeViewer() {
                     const data = await response.json();
                     setCurrentEpisodeSource(data.sources.reverse());
                 } else {
+                    handleError()
                     throw new Error("Failed to fetch episode source");
                 }
             } catch (error) {
+                handleError()
                 console.error(error);
             } finally {
                 setIsLoading(false);
             }
         };
 
-        fetchEpisodeSource();
+        if (currentEpisode) fetchEpisodeSource();
     }, [currentEpisode]);
 
     return (
         <>
-            {isLoading ? (
+            {isError ? <h1 className='text-white text-center p-5'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> : isLoading ? (
                 <LoadingAnimation />
             ) : (
                 <>
+                    {/* Main Video Player Start */}
                     <div className="video-container">
                         {currentEpisodeSource && totalEpisodes && (
                             <Player
@@ -104,6 +120,9 @@ export default function EpisodeViewer() {
                             </Player>
                         )}
                     </div>
+                    {/* Main Video Player End */}
+
+                    {/* Latest Episode Start */}
                     <section className="latest-episodes">
                         <div className="container">
                             <div className="row">
@@ -121,13 +140,15 @@ export default function EpisodeViewer() {
                                                 isActive={currentEpisode === element.id}
                                                 changeEpisode={setCurrentEpisode}
                                             />
-                                        ))
-                                }
+                                        ))}
                             </div>
                         </div>
                     </section>
+                    {/* Latest Episode End */}
 
+                    {/* Information and Suggestion Start */}
                     <AnimeInfoCard playButton={false} />
+                    {/* Information and Suggestion End */}
                 </>
             )}
         </>
