@@ -74,6 +74,7 @@ export default function AnimeByGenre() {
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}
                                             genres={element.genres}
+                                            explorable={element.currentEpisode > 0 || element.episodeNumber || element.status === "Ongoing" || element.status === "Completed"}
                                         />) : <LoadingAnimation />}
                             </div>
                         </div>

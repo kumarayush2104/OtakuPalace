@@ -12,8 +12,10 @@ export default function TopAiring() {
     const [hasNextPage, setHasNextPage] = useState(false)
     const [pageNumber, setPageNumber] = useState(1)
 
+    // Handles Error
     const handleError = () => setError(true)
 
+    // Handles Page
     const handlePage = (hasPage) => setHasNextPage(hasPage)
 
     useEffect(() => {
@@ -66,6 +68,7 @@ export default function TopAiring() {
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}
                                             genres={element.genres}
+                                            explorable={element.currentEpisode > 0 || element.episodeNumber || element.status === "Ongoing" || element.status === "Completed"}
                                         />) : <LoadingAnimation />}
                             </div>
                         </div>

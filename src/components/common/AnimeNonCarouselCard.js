@@ -12,7 +12,7 @@ export default function AnimeNonCarouselCard(props) {
                     <img alt={props.title} className="img-fluid" src={props.image} />
 
                     {/* Explorable Icon Start */}
-                    <div className="box-content">
+                    {props.explorable ? <div className="box-content">
                         <ul className="icon">
                             <li>
                                 <Link to={`/View/${props.id}`}><i className="fas fa-play"></i></Link>
@@ -21,7 +21,7 @@ export default function AnimeNonCarouselCard(props) {
                                 <Link to={`/Info/${props.id}`}><i className="fas fa-info"></i></Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> : ""}
                     {/* Explorable Icon End */}
 
                 </div>
@@ -37,7 +37,7 @@ export default function AnimeNonCarouselCard(props) {
                     </div>
                 </div>
                 {/* Video Details End */}
-                
+
             </div>
         </div>
     )
