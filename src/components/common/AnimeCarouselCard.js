@@ -34,7 +34,7 @@ export default function AnimeCarouselCard(props) {
                 {props.episode ? (
                     <p className="video-info text-center">{`Episode ${props.episode}`}</p>
                 ) : props.genres ? <div className="video-info d-flex align-items-center flex-wrap">
-                    {props.genres.map((element) => <span className="video-type m-1">{element}</span>)}
+                    {props.genres.map((element, index) => <span key={index} className="video-type m-1">{element}</span>)}
                 </div> : null}
             </div>
             {/* Video Details End */}

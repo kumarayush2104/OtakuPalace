@@ -63,6 +63,7 @@ export default function TopAnimeSection(props) {
                             {animeList.map((element) => props.largeScreen ?
                                 // Default Anime Card
                                 <TopAnimeCard
+                                    key={element.id}
                                     id={element.id}
                                     image={element.image}
                                     description={element.description}
@@ -71,6 +72,7 @@ export default function TopAnimeSection(props) {
 
                                 // Mobile Anime Card
                                 <TopAnimeCardMobile
+                                    key={element.id}
                                     id={element.id}
                                     image={element.image}
                                     description={element.description}
