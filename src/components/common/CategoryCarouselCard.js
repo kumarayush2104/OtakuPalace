@@ -112,8 +112,8 @@ export default function CategoryCarouselCard(props) {
                 </div>
 
                 {/* View More Button Start */}
-                {props.viewMoreButton && !isError ? (
-                    <Link to={`/Category/${props.link}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
+                {props.viewMorePath && !isError ? (
+                    <Link to={`${props.viewMorePath}`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
                         View More
                     </Link>
                 ) : null}

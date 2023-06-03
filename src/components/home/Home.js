@@ -29,13 +29,13 @@ export default function Home() {
             <TopAnimeSection largeScreen={isLargeScreen} />
 
             {/* Recently Added Episodes Section  */}
-            <CategoryCarouselCard title={"Recently Added"} link={"recent-episodes"} viewMoreButton={true} />
+            <CategoryCarouselCard title={"Recently Added"} link={"recent-episodes"} viewMorePath={"/Recently-aired"}/>
 
             {/* Minimal Anime By Genre Section  */}
             <AnimeByGenre />
 
             {/* Upcoming Anime Section */}
-            <CategoryCarouselCard title={"Upcoming Anime"} link={"advanced-search?status=NOT_YET_RELEASED&perPage=10"} viewMoreButton={true} />
+            <CategoryCarouselCard title={"Upcoming Anime"} link={"advanced-search?status=NOT_YET_RELEASED&perPage=10"} viewMorePath={"Upcoming"} />
         </>
     )
 }

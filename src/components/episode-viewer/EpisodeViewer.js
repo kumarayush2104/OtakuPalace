@@ -122,7 +122,7 @@ export default function EpisodeViewer() {
                                         }))} dimensions={{ width: "100%", height: "100%" }} keyboardShortcut={false} >
 
                                     {(ref, props) => (
-                                        <ReactHlsPlayer playerRef={ref} {...props} autoPlay />
+                                        <ReactHlsPlayer playerRef={ref} {...props} />
                                     )}
                                 </Player>
                             )}

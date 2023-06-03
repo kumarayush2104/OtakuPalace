@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import LoadingAnimation from '../common/LoadingAnimation'
 import AnimeNonCarouselCard from '../common/AnimeNonCarouselCard'
 
-export default function TopAiring() {
+export default function CategorizedSection(props) {
 
     const [animeList, setAnimeList] = useState(null)
     const [isError, setError] = useState(false)
@@ -19,7 +19,7 @@ export default function TopAiring() {
     const handlePage = (hasPage) => setHasNextPage(hasPage)
 
     useEffect(() => {
-        // Scroll to top on page navigation
+        // Scroll to top on page navigation 
         window.scrollTo({
             top: 0,
             left: 0,
@@ -30,7 +30,7 @@ export default function TopAiring() {
         const fetchData = async () => {
             setAnimeList(null)
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/trending?perPage=18&page=" + pageNumber);
+                const response = await fetch("https://api.consumet.org/meta/anilist/" + props.link +"perPage=18&page=" + pageNumber);
                 if (response.ok) {
                     const data = await response.json();
                     handlePage(data.hasNextPage)
@@ -53,7 +53,7 @@ export default function TopAiring() {
 
                     {/* Title Section Start */}
                     <div className="col-lg-12 d-flex justify-content-between">
-                        <h2 className="block-title">Top Airing</h2>
+                        <h2 className="block-title">{props.title}</h2>
                     </div>
                     {/* Title Section End */}
                     
@@ -68,6 +68,7 @@ export default function TopAiring() {
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}
                                             genres={element.genres}
+                                            episode={element.episodeNumber}
                                             explorable={element.currentEpisode > 0 || element.episodeNumber || element.status === "Ongoing" || element.status === "Completed"}
                                         />) : <LoadingAnimation />}
                             </div>
