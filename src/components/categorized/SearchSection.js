@@ -62,13 +62,14 @@ export default function SearchSection() {
                         <div className="tab-pane animated fadeInRight show active">
                             <div className="row">
                                 {isError ?
-                                
+
                                     // Error Banner Start
                                     <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
                                     // Error Banner End
 
                                     animeList ?
                                         animeList.map((element) => <AnimeNonCarouselCard
+                                            key={element.id}
                                             id={element.id}
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}

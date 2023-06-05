@@ -64,6 +64,7 @@ export default function CategorizedSection(props) {
                                 {isError ? <h1 className='text-white text-center'><i className="fa-solid fa-warning" style={{ color: "#FF0000" }} /> Failed to Fetch Data</h1> :
                                     animeList ?
                                         animeList.map((element) => <AnimeNonCarouselCard
+                                            key={element.id}
                                             id={element.id}
                                             image={element.image}
                                             title={element.title.english ? element.title.english : element.title.romaji}
