@@ -85,7 +85,7 @@ export default function AnimeByGenre() {
                 </div>
 
                 {/* View More Button Start */}
-                <Link to={`/Category/Genre`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
+                <Link to={`Advanced-Search`} className="btn d-block view-more-button hvr-sweep-to-right" tabIndex="0">
                     View More
                 </Link>
                 {/* View More Button End */}

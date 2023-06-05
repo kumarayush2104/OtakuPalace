@@ -30,7 +30,7 @@ export default function CategorizedSection(props) {
         const fetchData = async () => {
             setAnimeList(null)
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/" + props.link +"perPage=18&page=" + pageNumber);
+                const response = await fetch("https://api.consumet.org/meta/anilist/" + props.link + "perPage=18&page=" + pageNumber);
                 if (response.ok) {
                     const data = await response.json();
                     handlePage(data.hasNextPage)
@@ -44,7 +44,7 @@ export default function CategorizedSection(props) {
         }
 
         fetchData();
-    }, [pageNumber])
+    }, [pageNumber, props.link])
 
     return (
         <section className="carousel-section">
@@ -56,7 +56,7 @@ export default function CategorizedSection(props) {
                         <h2 className="block-title">{props.title}</h2>
                     </div>
                     {/* Title Section End */}
-                    
+
                     {/* Tab Content Start */}
                     <div className="tab-content">
                         <div className="tab-pane animated fadeInRight show active">
