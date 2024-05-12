@@ -48,7 +48,7 @@ export default function CategoryCarouselCard(props) {
 
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/" + props.link);
+                const response = await fetch("https://api.streamsora.live/meta/anilist/" + props.link);
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeList(data.results);

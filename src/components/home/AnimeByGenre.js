@@ -22,7 +22,7 @@ export default function AnimeByGenre() {
         const fetchData = async () => {
             setAnimeList(null)
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/advanced-search?genres=[%22" + animeGenre + "%22]&perPage=6");
+                const response = await fetch("https://api.streamsora.live/meta/anilist/advanced-search?genres=[%22" + animeGenre + "%22]&perPage=6");
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeList(data.results);

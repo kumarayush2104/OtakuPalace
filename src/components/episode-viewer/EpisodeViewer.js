@@ -76,7 +76,7 @@ export default function EpisodeViewer() {
             try {
                 setIsLoading(true);
                 const response = await fetch(
-                    "https://api.consumet.org/anime/gogoanime/watch/" + currentEpisode
+                    "https://api.streamsora.live/anime/gogoanime/watch/" + currentEpisode
                 );
                 if (response.ok) {
                     const data = await response.json();
