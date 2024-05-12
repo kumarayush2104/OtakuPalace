@@ -31,7 +31,7 @@ export default function EpisodeViewer() {
             try {
                 setIsLoading(true);
                 const response = await fetch(
-                    "https://api.consumet.org/meta/anilist/info/" +
+                    "https://api.streamsora.live/meta/anilist/info/" +
                     window.location.pathname.split("/")[2]
                 );
                 if (response.ok) {

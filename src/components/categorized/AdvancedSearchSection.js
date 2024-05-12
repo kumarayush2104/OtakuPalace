@@ -113,7 +113,7 @@ export default function AdvancedSearchSection() {
         const fetchData = async () => {
             setAnimeList(null)
             try {
-                var url = "https://api.consumet.org/meta/anilist/advanced-search?perPage=18&page=" + pageNumber;
+                var url = "https://api.streamsora.live/meta/anilist/advanced-search?perPage=18&page=" + pageNumber;
                 if (genre) url += "&genres=[%22" + genre + "%22]"
                 if (year) url += "&year=" + year
                 if (sortOption) url += "&sort=[%22" + sortOption + "%22]"

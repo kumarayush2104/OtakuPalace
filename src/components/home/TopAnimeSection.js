@@ -34,7 +34,7 @@ export default function TopAnimeSection(props) {
         setAnimeList(null);
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/trending");
+                const response = await fetch("https://api.streamsora.live/ ");
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeList(data.results);

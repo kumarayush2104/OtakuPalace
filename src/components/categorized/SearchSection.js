@@ -31,7 +31,7 @@ export default function SearchSection() {
         const fetchData = async () => {
             setAnimeList(null)
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/" + window.location.pathname.split("/")[2] + "?perPage=18&page=" + pageNumber);
+                const response = await fetch("https://api.streamsora.live/meta/anilist/" + window.location.pathname.split("/")[2] + "?perPage=18&page=" + pageNumber);
                 if (response.ok) {
                     const data = await response.json();
                     handlePage(data.hasNextPage)
