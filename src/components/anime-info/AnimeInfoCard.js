@@ -29,7 +29,7 @@ export default function AnimeInfoCard(props) {
         setAnimeInfo(null);
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api.consumet.org/meta/anilist/info/" + window.location.pathname.split("/")[2]);
+                const response = await fetch("https://api.streamsora.live/meta/anilist/info/" + window.location.pathname.split("/")[2]);
                 if (response.ok) {
                     const data = await response.json();
                     setAnimeInfo(data);
